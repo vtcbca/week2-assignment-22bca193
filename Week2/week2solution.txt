@@ -1,0 +1,71 @@
+sqlite> .open student.db
+
+--->1. Create table 
+
+
+sqlite> CREATE TABLE stud1(
+   ...>      id INTEGER PRIMARY KEY,
+   ...>      name TEXT
+   ...> );
+
+
+sqlite>  CREATE TABLE stud_details (
+   ...>      id INTEGER,
+   ...>      city TEXT,
+   ...>      mobileno TEXT,
+   ...>      FOREIGN KEY (id) REFERENCES stud(id)
+   ...>  );
+
+--->2. Insert minimum 10 records for each table.
+
+sqlite> insert into stud values(1,'neel');
+sqlite> insert into stud  values(2,'ved');
+sqlite> insert into stud  values(3,'raj');
+sqlite> insert into stud  values(4,'vivek');
+sqlite> insert into stud  values(5,'pratham');
+sqlite> insert into stud  values(6,'bhavik');
+sqlite> insert into stud  values(7,'meet');
+sqlite> insert into stud  values(8,'kavi');
+sqlite> insert into stud  values(9,'sunil');
+sqlite> insert into stud  values(10,'thirt');
+
+
+sqlite> insert into stud_details values(1,'bardoli',94139652873);
+sqlite> insert into stud_details values(2,'surat',9981439657);
+sqlite> insert into stud_details values(3,'valod',9984152364);
+sqlite> insert into stud_details values(4,'bhuj',6355316331;
+sqlite> insert into stud_details values(5,'surat',9715293766);
+sqlite> insert into stud_details values(6,'bardoli',9971527664);
+sqlite> insert into stud_details values(7,'surat',7485889002);
+sqlite> insert into stud_details values(8,'bhuj',9966889002);
+sqlite> insert into stud_details values(9,'valod',9945125202);
+sqlite> insert into stud_details values(10,'surat',7456882235);
+
+--->3. Display whose student come from the Surat City.
+
+sqlite> select stud1.id,name ,city, mobileno from stud_details inner join stud1 on stud1.id=stud_details.id and city ='surat';
+
+-->output:
+
+2|raj|surat|9981439657
+5|pratham|surat|9715293766
+7|meet|surat|7485889002
+10|thirth|surat|7456882235
+
+-->>4. Display student details whose city name start with 'B'.
+
+
+sqlite> select stud1.id,name ,city, mobileno from stud_details inner join stud1 on stud1.id=stud_details.id and city like 'b%';
+
+-->output:
+
+1|neel|bardoli|94139652873
+4|vivek|bhuj|6355316331
+6|bhavik|bardoli|9971527664
+8|kavi|bhuj|9966889002
+
+---->5. Update mobileno who are comming from 'Surat'
+ 
+
+sqlite> update stud_details set mobileno=9998874520 where city='surat' and id=7
+   ...> ;
